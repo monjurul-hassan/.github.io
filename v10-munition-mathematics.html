@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The munition mathematics — blast radius and population density</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;padding:24px;background:#fff;color:#222}
+  .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:12px;color:#666;margin-bottom:20px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;margin-bottom:16px}
+  .facts{display:flex;flex-direction:column;gap:10px}
+  .fact{border-radius:8px;padding:12px 14px}
+  .fact-num{font-size:22px;font-weight:700;line-height:1}
+  .fact-label{font-size:11px;margin-top:4px;line-height:1.5}
+  .equation{border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.8;margin-bottom:12px}
+  .eq-line{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+  .eq-val{font-size:18px;font-weight:700}
+  .eq-op{color:#999;font-size:14px}
+  .eq-label{font-size:11px;color:#666}
+  .footer{font-size:12px;color:#555;line-height:1.7;border-radius:8px;padding:12px 14px;background:#f5f5f5}
+  .source{font-size:10px;color:#999;margin-top:12px;line-height:1.6}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif}
+  @media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.subtitle,.source,.eq-label{color:#999}.footer{background:#2a2a3a;color:#bbb}}
+  @media(max-width:500px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="title">The munition choice is a probabilistic decision about civilian casualties — made before the strike</div>
+<div class="subtitle">Using a 2,000 lb bomb in Gaza's population density places approximately 2,400 people inside each lethal blast radius. This is prospective mathematics, not retrospective judgement.</div>
+<div class="grid">
+  <div style="display:flex;justify-content:center">
+    <svg width="240" height="240" viewBox="0 0 240 240" role="img" aria-label="Concentric circles diagram showing 360 metre blast radius containing approximately 2400 people at Gaza population density">
+      <title>Blast radius diagram</title>
+      <circle cx="120" cy="120" r="100" fill="#fce8e8" stroke="#E24B4A" stroke-width="0.5"/>
+      <circle cx="120" cy="120" r="65" fill="#f09595" stroke="#E24B4A" stroke-width="0.5"/>
+      <circle cx="120" cy="120" r="26" fill="#E24B4A"/>
+      <text x="120" y="116" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">2,000 lb</text>
+      <text x="120" y="128" text-anchor="middle" font-size="8" fill="#fff">bomb</text>
+      <line x1="120" y1="120" x2="210" y2="80" stroke="#E24B4A" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <text x="214" y="78" font-size="10" fill="#A32D2D">360m</text>
+      <text x="214" y="90" font-size="9" fill="#A32D2D">lethal radius</text>
+      <text x="120" y="210" text-anchor="middle" font-size="10" fill="#666">~2,400 people inside</text>
+      <text x="120" y="223" text-anchor="middle" font-size="9" fill="#999">at Gaza's population density</text>
+    </svg>
+  </div>
+  <div class="facts">
+    <div class="fact" style="background:#fce8e8">
+      <div class="fact-num" style="color:#A32D2D">~45%</div>
+      <div class="fact-label" style="color:#791F1F">of early-phase Gaza strikes used 2,000 lb bomb class (Airwaves / NYT forensics)</div>
+    </div>
+    <div class="fact" style="background:#fef8e8">
+      <div class="fact-num" style="color:#854F0B">360m</div>
+      <div class="fact-label" style="color:#633806">lethal blast radius — wider than four football pitches end to end</div>
+    </div>
+    <div class="fact" style="background:#eef2fe">
+      <div class="fact-num" style="color:#534AB7">6,000/km²</div>
+      <div class="fact-label" style="color:#3C3489">Gaza population density — far higher during displacement into smaller areas</div>
+    </div>
+    <div class="fact" style="background:#f0faf4">
+      <div class="fact-num" style="color:#27500A">~2,400</div>
+      <div class="fact-label" style="color:#3B6D11">people inside each blast radius before the bomb is dropped</div>
+    </div>
+  </div>
+</div>
+<div class="footer">In May 2024, the United States paused delivery of 2,000 lb bombs to Israel specifically due to civilian casualty concerns in Rafah — an independent acknowledgement from Israel's primary arms supplier that munition choice drives casualty counts. Military lawyers call this the <strong>proportionality calculus</strong>. The mathematics shows it was systematically violated.</div>
+<div class="source">Sources: Airwaves munition forensics · NYT Visual Investigations · US Department of Defense statement on munitions pause, May 2024 · Gaza population density data: UN OCHA and World Bank pre-conflict figures.</div>
+</body>
+</html>

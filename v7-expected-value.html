@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expected value — Israeli military campaign outcomes</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;padding:24px;background:#fff;color:#222}
+  .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:12px;color:#666;margin-bottom:20px;line-height:1.5}
+  .chart-wrap{position:relative;width:100%;height:280px}
+  .source{font-size:10px;color:#999;margin-top:12px;line-height:1.6}
+  @media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.subtitle,.source{color:#999}}
+</style>
+</head>
+<body>
+<div class="title">Expected value: probability-weighted outcomes of the military campaign</div>
+<div class="subtitle">Expected value = (probability × outcome value) summed across all scenarios. A rational actor only initiates action when the expected value is positive. The 5–10% chance of permanently destroying Hamas does not outweigh the 60–70% chance of producing a more radicalised successor.</div>
+<div class="chart-wrap">
+  <canvas id="chart" role="img" aria-label="Horizontal bar chart showing four outcomes: Hamas permanently destroyed 5-10%, Hamas degraded successor emerges 60-70%, regional escalation 25-35%, durable peace 2-5%"></canvas>
+</div>
+<div class="source">Probability estimates are analytical approximations drawn from historical precedent (PLO → Hamas succession pattern), strategic analysis from International Crisis Group, RAND Corporation assessments, and current operational reporting as of April 2025. Ranges reflect genuine uncertainty — midpoints shown as bars.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const dark=matchMedia('(prefers-color-scheme:dark)').matches;
+const tc=dark?'#999':'#666';
+const gc=dark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)';
+const ranges=[[5,10],[60,70],[25,35],[2,5]];
+const mids=ranges.map(r=>(r[0]+r[1])/2);
+new Chart(document.getElementById('chart'),{
+  type:'bar',
+  data:{
+    labels:['Hamas permanently destroyed','Hamas degraded, radicalised\nsuccessor emerges','Regional escalation\ninto wider war','Durable peace /\ntwo-state solution'],
+    datasets:[{
+      data:mids,
+      backgroundColor:['#1D9E75','#E24B4A','#EF9F27','#378ADD'],
+      borderWidth:0,borderRadius:4
+    }]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${ranges[c.dataIndex][0]}–${ranges[c.dataIndex][1]}% probability`}}},
+    scales:{
+      x:{grid:{color:gc},min:0,max:80,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},title:{display:true,text:'Estimated probability',color:tc,font:{size:11}}},
+      y:{grid:{display:false},ticks:{color:tc,font:{size:11}}}
+    }
+  }
+});
+</script>
+</body>
+</html>

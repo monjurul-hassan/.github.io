@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protected site destruction rates — Gaza</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;padding:24px;background:#fff;color:#222}
+  .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:12px;color:#666;margin-bottom:16px;line-height:1.5}
+  .legend{display:flex;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+  .leg{display:flex;align-items:center;gap:6px;font-size:11px;color:#666}
+  .leg-sq{width:10px;height:10px;border-radius:2px}
+  .leg-line{width:20px;height:2px;border-top:2px dashed #378ADD}
+  .chart-wrap{position:relative;width:100%;height:320px}
+  .source{font-size:10px;color:#999;margin-top:12px;line-height:1.6}
+  @media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.subtitle,.source,.leg{color:#999}}
+</style>
+</head>
+<body>
+<div class="title">Protected sites destroyed at 19× the random rate — the probability of coincidence is indistinguishable from zero</div>
+<div class="subtitle">International humanitarian law grants absolute protection to hospitals, schools, places of worship, and UN facilities. Protected sites represent roughly 3–5% of Gaza's built environment — a random collision rate of approximately 5%. The observed rate is 83–100%.</div>
+<div class="legend">
+  <div class="leg"><div class="leg-sq" style="background:#E24B4A"></div>Actual destruction rate</div>
+  <div class="leg"><div class="leg-line"></div>Expected rate if random (~5%)</div>
+</div>
+<div class="chart-wrap">
+  <canvas id="chart" role="img" aria-label="Bar chart: hospitals 94%, schools over 80%, mosques 83%, churches 100%, UNRWA facilities over 50%, journalists killed 170 plus. Dashed reference line at 5% shows expected random rate."></canvas>
+</div>
+<div class="source">Sources: World Health Organisation (hospital data) · UNRWA (school and facility data) · Committee to Protect Journalists · Reporters Without Borders (journalist data) · Airwaves (mosque and church data) · all figures as of April 2025.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const dark=matchMedia('(prefers-color-scheme:dark)').matches;
+const tc=dark?'#999':'#666';
+const gc=dark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)';
+new Chart(document.getElementById('chart'),{
+  type:'bar',
+  data:{
+    labels:['Hospitals\n(34 of 36)','Schools\n(UNRWA)','Mosques\n(~500 of 600)','Churches\n(3 of 3)','UNRWA\nfacilities','Journalists\nkilled (170+)'],
+    datasets:[
+      {type:'bar',label:'Actual rate',data:[94,80,83,100,53,100],backgroundColor:'#E24B4A',borderWidth:0,borderRadius:3},
+      {type:'line',label:'Random baseline (~5%)',data:[5,5,5,5,5,5],borderColor:'#378ADD',borderWidth:2,borderDash:[6,3],pointRadius:0,fill:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label==='Actual rate'?` ${c.raw}% damaged or destroyed`:` ~5% expected random rate`}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:tc,font:{size:10},maxRotation:0}},
+      y:{grid:{color:gc},min:0,max:110,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},title:{display:true,text:'% damaged or destroyed',color:tc,font:{size:11}}}
+    }
+  }
+});
+</script>
+</body>
+</html>

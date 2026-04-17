@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survivorship bias — what we see vs what we don't</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;padding:24px;background:#fff;color:#222}
+  .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:12px;color:#666;margin-bottom:20px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .col{border-radius:8px;padding:16px}
+  .col-head{font-size:10px;font-weight:700;letter-spacing:.08em;margin-bottom:14px}
+  .item{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid}
+  .item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .num{font-size:20px;font-weight:700;min-width:80px;line-height:1.1}
+  .label{font-size:12px;line-height:1.5;margin-top:2px}
+  .footer{border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.7;text-align:center;background:#f5f5f5;color:#333}
+  .source{font-size:10px;color:#999;margin-top:12px;line-height:1.6}
+  @media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.subtitle,.source{color:#999}.footer{background:#2a2a3a;color:#ccc}}
+  @media(max-width:500px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="title">Every documented figure is a floor, not a ceiling</div>
+<div class="subtitle">Survivorship bias: you only see what survived the selection process. In Gaza, the selection process is the systematic elimination of recording infrastructure — journalists, hospitals, communications networks.</div>
+<div class="grid">
+  <div class="col" style="background:#f0faf4">
+    <div class="col-head" style="color:#27500A">WHAT WE CAN DOCUMENT</div>
+    <div class="item" style="border-color:#c0dd97">
+      <div class="num" style="color:#27500A">46,000+</div>
+      <div class="label" style="color:#3B6D11">recorded deaths (Gaza MoH, UN OCHA)</div>
+    </div>
+    <div class="item" style="border-color:#c0dd97">
+      <div class="num" style="color:#27500A">17,000</div>
+      <div class="label" style="color:#3B6D11">children killed (UNICEF)</div>
+    </div>
+    <div class="item" style="border-color:#c0dd97">
+      <div class="num" style="color:#27500A">170+</div>
+      <div class="label" style="color:#3B6D11">journalists killed — the recorders are gone</div>
+    </div>
+    <div class="item" style="border-color:#c0dd97">
+      <div class="num" style="color:#27500A">34/36</div>
+      <div class="label" style="color:#3B6D11">hospitals hit — the record-keepers are gone</div>
+    </div>
+  </div>
+  <div class="col" style="background:#fef2f2">
+    <div class="col-head" style="color:#A32D2D">WHAT WE CANNOT DOCUMENT</div>
+    <div class="item" style="border-color:#f7c1c1">
+      <div class="num" style="color:#791F1F">~10,000</div>
+      <div class="label" style="color:#A32D2D">bodies still under rubble, unrecovered</div>
+    </div>
+    <div class="item" style="border-color:#f7c1c1">
+      <div class="num" style="color:#791F1F">186,000+</div>
+      <div class="label" style="color:#A32D2D">Lancet excess mortality model (includes indirect deaths)</div>
+    </div>
+    <div class="item" style="border-color:#f7c1c1">
+      <div class="num" style="color:#791F1F">Unknown</div>
+      <div class="label" style="color:#A32D2D">casualties in communications blackout zones</div>
+    </div>
+    <div class="item" style="border-color:#f7c1c1">
+      <div class="num" style="color:#791F1F">Unknown</div>
+      <div class="label" style="color:#A32D2D">deaths from disease, starvation, medical collapse with no record</div>
+    </div>
+  </div>
+</div>
+<div class="footer">Systematic missing data always points one way: the true figure is <strong>higher</strong> than the documented figure. What we see is what survived the selection.</div>
+<div class="source">Sources: Gaza Ministry of Health · UN OCHA · UNICEF · The Lancet (excess mortality modelling) · Gaza Civil Defence (rubble estimate) · Committee to Protect Journalists · World Health Organisation. All figures as of April 2025.</div>
+</body>
+</html>

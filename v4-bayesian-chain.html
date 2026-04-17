@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bayesian update chain — Gaza evidence accumulation</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;padding:24px;background:#fff;color:#222}
+  .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .subtitle{font-size:12px;color:#666;margin-bottom:16px;line-height:1.5}
+  .legend{display:flex;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+  .leg{display:flex;align-items:center;gap:6px;font-size:11px;color:#666}
+  .leg-line{width:20px;height:2px}
+  .chart-wrap{position:relative;width:100%;height:320px}
+  .source{font-size:10px;color:#999;margin-top:12px;line-height:1.6}
+  @media(prefers-color-scheme:dark){body{background:#1a1a2e;color:#e0e0e0}.subtitle,.source,.leg{color:#999}}
+</style>
+</head>
+<body>
+<div class="title">Eighteen months of Bayesian updating — probability of disproportionate targeting</div>
+<div class="subtitle">Each point is a sequential update: new evidence revising the previous probability. No single incident established the conclusion. The accumulation did.</div>
+<div class="legend">
+  <div class="leg"><div class="leg-line" style="background:#E24B4A"></div>Posterior probability</div>
+  <div class="leg"><div class="leg-line" style="background:#888;border-top:2px dashed #888"></div>Uncertainty threshold (50%)</div>
+</div>
+<div class="chart-wrap">
+  <canvas id="chart" role="img" aria-label="Step line chart showing probability rising from 50% in October 2023 to 87% by December 2024 after sequential Bayesian updates from Al-Ahli Hospital, World Central Kitchen strike, Rafah tent camp, and 18-month pattern"></canvas>
+</div>
+<div class="source">Bayesian framework: starting prior of 50/50 between human-shield explanation and disproportionate-targeting explanation. Updates applied sequentially based on: Al-Ahli Hospital strike (Oct 2023), World Central Kitchen strike (Apr 2024, acknowledged by IDF), Rafah tent camp strike (May 2024, designated safe zone), 18-month civilian-to-combatant ratio pattern (3:1 to 9:1 consistently, vs IHL standard of approaching 1:1). Probability estimates are analytical approximations, not formal statistical outputs.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const dark=matchMedia('(prefers-color-scheme:dark)').matches;
+const tc=dark?'#999':'#666';
+const gc=dark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)';
+const labels=['Oct 2023\nPrior','Oct 2023\nAl-Ahli\nHospital','Apr 2024\nWorld Central\nKitchen','May 2024\nRafah\ntent camp','Dec 2024\n18-month\npattern'];
+new Chart(document.getElementById('chart'),{
+  type:'line',
+  data:{
+    labels,
+    datasets:[
+      {label:'Posterior',data:[50,55,70,80,87.5],borderColor:'#E24B4A',backgroundColor:'rgba(226,75,74,0.08)',fill:true,borderWidth:2.5,pointRadius:7,pointBackgroundColor:'#E24B4A',pointBorderColor:'#fff',pointBorderWidth:2,tension:0},
+      {label:'50% threshold',data:[50,50,50,50,50],borderColor:'#888',borderWidth:1.5,borderDash:[6,4],pointRadius:0,fill:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label===('Posterior')?` ${c.raw}% probability`:''}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:tc,font:{size:10},maxRotation:0}},
+      y:{grid:{color:gc},min:0,max:100,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},title:{display:true,text:'Probability of disproportionate targeting',color:tc,font:{size:11}}}
+    }
+  }
+});
+</script>
+</body>
+</html>
